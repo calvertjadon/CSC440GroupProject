@@ -1,0 +1,15 @@
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\bin\Debug\CSC440GroupProject.exe.config
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\bin\Debug\CSC440GroupProject.exe
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\bin\Debug\CSC440GroupProject.pdb
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.csproj.AssemblyReference.cache
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\MainWindow.g.cs
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\App.g.cs
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject_MarkupCompile.cache
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject_MarkupCompile.lref
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\MainWindow.baml
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.g.resources
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.Properties.Resources.resources
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.csproj.GenerateResource.cache
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.csproj.CoreCompileInputs.cache
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.exe
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.pdb
