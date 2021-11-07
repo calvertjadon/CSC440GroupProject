@@ -29,8 +29,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "Domain Diagram";
 				- _id = GUID 69880a12-770f-4b5d-997d-52b57c836178;
 			}
-			- _UpLeft = 0 140 ;
-			- _DownRight = 1386 1002 ;
+			- _UpLeft = 0 157 ;
+			- _DownRight = 1400 1028 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
 		}
