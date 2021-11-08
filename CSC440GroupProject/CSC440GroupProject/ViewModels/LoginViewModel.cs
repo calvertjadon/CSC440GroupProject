@@ -1,4 +1,5 @@
 ﻿using CSC440GroupProject.Commands;
+using CSC440GroupProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,22 @@ namespace CSC440GroupProject.ViewModels
     {
         public ICommand LoginButtonCommand { get; }
 
+        public LoginStatus loginStatus;
+
+        public string Status
+        {
+            get => loginStatus.Status;
+            set
+            {
+                loginStatus.Status = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
+
         public LoginViewModel()
         {
-            LoginButtonCommand = new LoginCommand();
+            LoginButtonCommand = new LoginCommand(this);
+            loginStatus = new LoginStatus("Not Logged In");
         }
     }
 }

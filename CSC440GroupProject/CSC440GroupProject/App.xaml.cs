@@ -24,8 +24,8 @@ namespace CSC440GroupProject
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            // _navigationStore.CurrentViewModel = new LoginViewModel();
-            _navigationStore.CurrentViewModel = new SearchViewModel();
+            _navigationStore.CurrentViewModel = new LoginViewModel();
+            // _navigationStore.CurrentViewModel = new SearchViewModel();
 
             MainWindow = new MainWindow()
             {
