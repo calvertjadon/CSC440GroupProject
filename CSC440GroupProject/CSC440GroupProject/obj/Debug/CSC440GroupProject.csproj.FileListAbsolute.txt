@@ -13,3 +13,10 @@ C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440Group
 C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.csproj.CoreCompileInputs.cache
 C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.exe
 C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\CSC440GroupProject.pdb
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\Views\LoginView.g.cs
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\Views\LoginView.baml
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\Views\NavigationView.g.cs
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\Views\SearchView.g.cs
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\Views\NavigationView.baml
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\Views\SearchView.baml
+C:\Users\calve\OneDrive\Documents\Projects\School\CSC440GroupProject\CSC440GroupProject\CSC440GroupProject\obj\Debug\GeneratedInternalTypeHelper.g.cs

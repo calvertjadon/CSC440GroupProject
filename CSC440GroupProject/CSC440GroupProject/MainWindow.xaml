@@ -4,10 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSC440GroupProject"
+        xmlns:views="clr-namespace:CSC440GroupProject.Views"
+        xmlns:viewmodels="clr-namespace:CSC440GroupProject.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="601,129,0,0" VerticalAlignment="Top"/>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView />
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewmodels:SearchViewModel}">
+                <views:SearchView />
+            </DataTemplate>
+        </Grid.Resources>
 
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
