@@ -1,4 +1,6 @@
 ﻿using CSC440GroupProject.Commands;
+using CSC440GroupProject.Services;
+using CSC440GroupProject.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,11 @@ namespace CSC440GroupProject.ViewModels
 {
     class SearchViewModel : ViewModelBase
     {
-        public ICommand SearchButtonCommand { get; }
+        public ICommand NavigateToLoginCommand { get; }
 
-        public SearchViewModel()
+        public SearchViewModel(NavigationService loginViewNavigationService)
         {
-            SearchButtonCommand = new SearchCommand();
+            NavigateToLoginCommand = new NavigateCommand(loginViewNavigationService);
         }
     }
 }

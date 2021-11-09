@@ -1,5 +1,7 @@
 ﻿using CSC440GroupProject.Commands;
 using CSC440GroupProject.Models;
+using CSC440GroupProject.Services;
+using CSC440GroupProject.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,8 @@ namespace CSC440GroupProject.ViewModels
     {
         public ICommand LoginButtonCommand { get; }
 
+        public ICommand NavigateToSearchCommand { get; }
+
         public LoginStatus loginStatus;
 
         public string Status
@@ -25,9 +29,12 @@ namespace CSC440GroupProject.ViewModels
             }
         }
 
-        public LoginViewModel()
+        public LoginViewModel(NavigationService searchViewNavigationService)
         {
             LoginButtonCommand = new LoginCommand(this);
+
+            NavigateToSearchCommand = new NavigateCommand(searchViewNavigationService);
+
             loginStatus = new LoginStatus("Not Logged In");
         }
     }

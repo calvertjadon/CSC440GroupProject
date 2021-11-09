@@ -9,7 +9,7 @@
 
     <Grid>
         <Label Content="SearchView" HorizontalAlignment="Left" Margin="365,232,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="400,298,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SearchButtonCommand}"/>
+        <Button Content="Navigate to LoginView" HorizontalAlignment="Left" Margin="400,298,0,0" VerticalAlignment="Top" Width="177" Command="{Binding NavigateToLoginCommand}" Height="45"/>
 
     </Grid>
 </UserControl>

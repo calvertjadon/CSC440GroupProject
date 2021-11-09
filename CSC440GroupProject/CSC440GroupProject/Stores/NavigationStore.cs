@@ -17,7 +17,15 @@ namespace CSC440GroupProject.Stores
             set
             {
                 _currentViewModel = value;
+                OnCurrentViewModelChanged();
             }
         }
+
+        private void OnCurrentViewModelChanged()
+        {
+            CurrentViewModelChanged?.Invoke();
+        }
+
+        public event Action CurrentViewModelChanged;
     }
 }

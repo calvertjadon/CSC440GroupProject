@@ -1,4 +1,5 @@
-﻿using CSC440GroupProject.Stores;
+﻿using CSC440GroupProject.Services;
+using CSC440GroupProject.Stores;
 using CSC440GroupProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace CSC440GroupProject
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = new LoginViewModel();
+            _navigationStore.CurrentViewModel = CreateLoginViewModel();
             // _navigationStore.CurrentViewModel = new SearchViewModel();
 
             MainWindow = new MainWindow()
@@ -34,6 +35,16 @@ namespace CSC440GroupProject
             MainWindow.Show();
 
             base.OnStartup(e);
+        }
+
+        private LoginViewModel CreateLoginViewModel()
+        {
+            return new LoginViewModel(new NavigationService(_navigationStore, CreateSearchViewModel));
+        }
+
+        private SearchViewModel CreateSearchViewModel()
+        {
+            return new SearchViewModel(new NavigationService(_navigationStore, CreateLoginViewModel));
         }
     }
 }

@@ -8,8 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        
+
         <Button Content="Login" Height="100" Width="100" Command="{Binding LoginButtonCommand}"/>
         <Label Content="{Binding Status}" HorizontalAlignment="Left" Margin="192,102,0,0" VerticalAlignment="Top"/>
+        <Button Content="Navigate To SearchView" HorizontalAlignment="Left" Margin="513,352,0,0" VerticalAlignment="Top" Width="162" Height="37" Command="{Binding NavigateToSearchCommand}"/>
+
     </Grid>
 </UserControl>

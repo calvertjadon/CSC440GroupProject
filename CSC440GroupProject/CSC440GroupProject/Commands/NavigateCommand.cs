@@ -1,4 +1,5 @@
 ﻿using CSC440GroupProject.Services;
+using CSC440GroupProject.Stores;
 using CSC440GroupProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,18 @@ using System.Threading.Tasks;
 
 namespace CSC440GroupProject.Commands
 {
-    class LoginCommand : CommandBase
+    class NavigateCommand : CommandBase
     {
-        private readonly LoginViewModel LoginViewModel;
-        public LoginCommand(LoginViewModel loginViewModel)
+        private readonly NavigationService _navigationService;
+
+        public NavigateCommand(NavigationService navigationService)
         {
-            LoginViewModel = loginViewModel;
+            _navigationService = navigationService;
         }
 
         public override void Execute(object parameter)
         {
-            Console.WriteLine("LOGIN BUTTON CLICKED");
-            LoginViewModel.Status = "Logged In";
+            _navigationService.Navigate();
         }
-
-
     }
 }

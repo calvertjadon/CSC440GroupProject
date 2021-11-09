@@ -57,8 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
-    <Compile Include="Commands\SearchCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Models\LoginStatus.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
