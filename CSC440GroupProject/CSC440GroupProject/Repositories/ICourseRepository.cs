@@ -8,7 +8,7 @@ using CSC440GroupProject.Models;
 
 namespace CSC440GroupProject.Repositories
 {
-    interface ICourseRepository
+    public interface ICourseRepository
     {
         List<Course> GetList();
     }

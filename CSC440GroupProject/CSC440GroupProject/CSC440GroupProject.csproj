@@ -64,6 +64,7 @@
     <Compile Include="Repositories\ICourseRepository.cs" />
     <Compile Include="Repositories\IGradeRepository.cs" />
     <Compile Include="Repositories\IStudentRepository.cs" />
+    <Compile Include="Repositories\StudentGradesManager.cs" />
     <Compile Include="Services\GradeManagementService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
