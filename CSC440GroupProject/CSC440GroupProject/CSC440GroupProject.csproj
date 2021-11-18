@@ -56,9 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\BaseCommand.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Grade.cs" />
-    <Compile Include="Models\Student.cs" />
+    <Compile Include="Reports\PdfReportGenerator.cs" />
     <Compile Include="Reports\PlainTextReportGenerator.cs" />
     <Compile Include="Reports\ReportGenerator.cs" />
     <Compile Include="ViewModels\ImportRecordsViewModel.cs" />

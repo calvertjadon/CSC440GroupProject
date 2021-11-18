@@ -7,8 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+
         <Label Content="Label" HorizontalAlignment="Left" Margin="252,172,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="439,267,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GenerateReportCommand}"/>
+        <Button Content="Generate Report" HorizontalAlignment="Left" Margin="439,267,0,0" VerticalAlignment="Top" Width="114" Command="{Binding GenerateReportCommand}" Height="41"/>
+
+        <ItemsControl ItemsSource="{Binding Radio}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Content="{Binding Header}" IsChecked="{Binding CheckedProperty}" GroupName="ReportTypeGroup"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
