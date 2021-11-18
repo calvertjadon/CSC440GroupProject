@@ -11,13 +11,11 @@ namespace CSC440GroupProject.Repositories
     {
         private IGradeRepository gradeRepository;
         private IStudentRepository studentRepository;
-        private ICourseRepository courseRepository;
 
-        public StudentGradesManager(IGradeRepository gradeRepository, IStudentRepository studentRepository, ICourseRepository courseRepository)
+        public StudentGradesManager(IGradeRepository gradeRepository, IStudentRepository studentRepository)
         {
             this.gradeRepository = gradeRepository;
             this.studentRepository = studentRepository;
-            this.courseRepository = courseRepository;
         }
 
         public void CreateStudent(Student student)
