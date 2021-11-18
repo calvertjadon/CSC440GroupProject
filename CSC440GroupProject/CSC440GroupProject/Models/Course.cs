@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace CSC440GroupProject.Models
 {
-    class Course
+    public class Course
     {
+        public string Prefix { get; }
+        public string Number { get; }
+        public string Year { get; }
+        public string Semester { get; }
+        public int Hours { get; }
+
+        public Course(string Prefix, string Number, string Year, string Semester, int Hours)
+        {
+            this.Prefix = Prefix;
+            this.Number = Number;
+            this.Year = Year;
+            this.Semester = Semester;
+            this.Hours = Hours;
+        }
     }
 }
