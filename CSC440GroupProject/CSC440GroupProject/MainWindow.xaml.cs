@@ -1,4 +1,5 @@
-﻿using CSC440GroupProject.ViewModels;
+﻿
+using CSC440GroupProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace CSC440GroupProject
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = new NavigationViewModel();
         }
     }
 }
