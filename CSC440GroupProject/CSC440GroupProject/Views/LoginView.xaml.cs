@@ -24,7 +24,5 @@ namespace CSC440GroupProject.Views
         {
             InitializeComponent();
         }
-
-
     }
 }

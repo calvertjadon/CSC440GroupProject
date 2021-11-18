@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSC440GroupProject.ViewModels
 {
-    class LoginViewModel
+    class ImportRecordsViewModel
     {
     }
 }

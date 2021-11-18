@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CSC440GroupProject.Views
 {
     /// <summary>
-    /// Interaction logic for SearchView.xaml
+    /// Interaction logic for ImportRecordsView.xaml
     /// </summary>
-    public partial class SearchView : UserControl
+    public partial class ImportRecordsView : UserControl
     {
-        public SearchView()
+        public ImportRecordsView()
         {
             InitializeComponent();
         }
