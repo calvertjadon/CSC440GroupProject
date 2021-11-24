@@ -14,7 +14,7 @@ namespace CSC440GroupProject.Models
 
         public string CoursePrefix { get; set; }
         public string CourseNum { get; set; }
-        public int StudentId { get; set; }
+        public string StudentId { get; set; }
         public string Year { get; set; }
         public string Semester { get; set; }
 

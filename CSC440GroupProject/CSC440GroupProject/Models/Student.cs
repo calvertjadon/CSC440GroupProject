@@ -10,7 +10,7 @@ namespace CSC440GroupProject.Models
     [Table("calvert_student")]
     public class Student
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public double GPA { get; set; }
         public int CreditHours { get; set; }
