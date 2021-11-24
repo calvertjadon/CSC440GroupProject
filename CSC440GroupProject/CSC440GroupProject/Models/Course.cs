@@ -17,5 +17,7 @@ namespace CSC440GroupProject.Models
         public string Number { get; }
         public string Year { get; }
         public string Semester { get; }
+
+        public string FullCourseIdentifier => Prefix + Number;
     }
 }

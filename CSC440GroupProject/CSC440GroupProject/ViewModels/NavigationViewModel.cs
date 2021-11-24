@@ -37,7 +37,7 @@ namespace CSC440GroupProject.ViewModels
 
         private void OpenLogin(object _)
         {
-            SelectedViewModel = new SearchViewModel();
+            SelectedViewModel = new SearchViewModel(this);
         }
 
         private void OpenImportRecords(object _)

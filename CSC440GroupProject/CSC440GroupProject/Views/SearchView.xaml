@@ -19,15 +19,24 @@
             ItemsSource="{Binding Students}"
             SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
             AutoGenerateColumns="False"
-            x:Name="studentDataGrid"
+            x:Name="studentDataGrid" IsReadOnly="True" CanUserResizeRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"
         >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="Auto"/>
+                <DataGridTextColumn Header="GPA" Binding="{Binding GPA, StringFormat='0.00'}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         
-        <Button Content="Load Students" HorizontalAlignment="Left" Margin="47,273,0,0" VerticalAlignment="Top" Width="242" Command="{Binding ButtonClick}" Height="38" />
+        <Button
+            Content="Load Students"
+            HorizontalAlignment="Left"
+            Margin="47,273,0,0"
+            VerticalAlignment="Top"
+            Width="242"
+            Command="{Binding ButtonClickCommand}"
+            Height="38"
+        />
 
         <DataGrid
             HorizontalAlignment="Left"
@@ -36,8 +45,10 @@
             VerticalAlignment="Top"
             Width="286"
             ItemsSource="{Binding Grades}"
+            SelectedItem="{Binding SelectedGrade}"
             AutoGenerateColumns="False"
-            x:Name="gradesDataGrid"
+            x:Name="gradesDataGrid" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"
+
         >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Course" Binding="{Binding FullCourseIdentifier}" Width="Auto"/>

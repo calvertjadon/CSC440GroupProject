@@ -13,8 +13,9 @@ namespace CSC440GroupProject.ViewModels
 {
     class SearchViewModel : ViewModelBase
     {
-        public ICommand ButtonClick { get; set; }
-        public ICommand IdTextBoxTextChanged { get; set; }
+        public ICommand ButtonClickCommand { get; set; }
+
+        NavigationViewModel NavigationViewModel { get; set; }
 
         private List<Student> students;
         public List<Student> Students
@@ -66,6 +67,20 @@ namespace CSC440GroupProject.ViewModels
             }
         }
 
+        private Grade selectedGrade;
+        public Grade SelectedGrade
+        {
+            get => selectedGrade;
+
+            set
+            {
+                Console.WriteLine(value);
+                selectedGrade = value;
+
+                this.NavigationViewModel.SelectedViewModel = new EditGradeViewModel(value, this.NavigationViewModel);
+            }
+        }
+
 
         private string idInput = "";
         public string IdInput
@@ -80,14 +95,15 @@ namespace CSC440GroupProject.ViewModels
             }
         }
 
-        public SearchViewModel()
+        public SearchViewModel(NavigationViewModel navigationViewModel)
         {
-            this.ButtonClick = new BaseCommand(LoadStudents);
+            this.ButtonClickCommand = new BaseCommand(LoadStudents);
+            this.NavigationViewModel = navigationViewModel;
 
             this.Students = new List<Student>();
             this.Grades = new List<Grade>();
 
-            //LoadStudents(null);
+            LoadStudents(null);
         }
 
         private void LoadStudents(object _)

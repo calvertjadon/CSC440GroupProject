@@ -19,5 +19,10 @@ namespace CSC440GroupProject.Models
         public string Semester { get; set; }
 
         public string FullCourseIdentifier => CoursePrefix + CourseNum;
+
+        public override string ToString()
+        {
+            return $"Grade<{StudentId} | {CoursePrefix}{CourseNum} {Semester} {Year} | {Letter}>";
+        }
     }
 }
