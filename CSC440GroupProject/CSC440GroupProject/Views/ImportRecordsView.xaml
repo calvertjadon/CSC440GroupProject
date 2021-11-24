@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Import Records" />
+        <TextBlock Text="Import Records" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
         <Label Content="Label" HorizontalAlignment="Left" Margin="252,172,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
