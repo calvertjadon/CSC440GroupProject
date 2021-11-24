@@ -18,9 +18,9 @@ namespace CSC440GroupProject.Views
     /// <summary>
     /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class SearchView : UserControl
     {
-        public LoginView()
+        public SearchView()
         {
             InitializeComponent();
         }

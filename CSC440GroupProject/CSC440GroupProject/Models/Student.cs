@@ -15,10 +15,5 @@ namespace CSC440GroupProject.Models
         public double GPA { get; set; }
         public int CreditHours { get; set; }
         public int GradePoints { get; set; }
-
-
-
-        // public List<Course> courses { get; set; }
-        public List<Grade> grades { get; set; }
     }
 }
