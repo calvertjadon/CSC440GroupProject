@@ -15,5 +15,10 @@ namespace CSC440GroupProject.Models
         public double GPA { get; set; }
         public int CreditHours { get; set; }
         public int GradePoints { get; set; }
+
+        public override string ToString()
+        {
+            return $"Student<{Id} {Name}>";
+        }
     }
 }

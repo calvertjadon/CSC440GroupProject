@@ -28,14 +28,14 @@ namespace CSC440GroupProject.ViewModels
 
         public NavigationViewModel()
         {
-            SearchCommand = new BaseCommand(OpenLogin);
+            SearchCommand = new BaseCommand(OpenSearch);
             ImportRecordsCommand = new BaseCommand(OpenImportRecords);
 
             // DEFAULT TO LOGIN SCREEN
-            SearchCommand.Execute(null);
+            ImportRecordsCommand.Execute(null);
         }
 
-        private void OpenLogin(object _)
+        private void OpenSearch(object _)
         {
             SelectedViewModel = new SearchViewModel(this);
         }

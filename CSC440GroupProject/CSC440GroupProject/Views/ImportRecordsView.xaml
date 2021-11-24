@@ -6,8 +6,21 @@
              xmlns:local="clr-namespace:CSC440GroupProject.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Import Records" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
-        <Label Content="Label" HorizontalAlignment="Left" Margin="252,172,0,0" VerticalAlignment="Top"/>
+    <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+        <Label
+            Content="Please choose a folder containing valid excel files"
+            HorizontalAlignment="Left"
+            Margin="269,67,0,0"
+            VerticalAlignment="Top"
+        />
+        <Button
+            Content="Browse"
+            HorizontalAlignment="Left"
+            Margin="329,106,0,0"
+            VerticalAlignment="Top"
+            Width="75"
+            Command="{Binding OpenFileCommand}"
+        />
+
     </Grid>
 </UserControl>

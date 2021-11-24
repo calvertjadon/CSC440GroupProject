@@ -15,7 +15,6 @@ namespace CSC440GroupProject.ViewModels
         private NavigationViewModel NavigationViewModel { get; set; }
 
         public Student SelectedStudent { get; set; }
-        public Course SelectedCourse { get; set; }
 
         public Grade GradeToEdit { get; set; }
 
@@ -51,14 +50,6 @@ namespace CSC440GroupProject.ViewModels
 
             using (var context = new DatabaseContext())
             {
-                SelectedCourse = context.Courses
-                    .Where(c => (
-                        c.Prefix.Equals(GradeToEdit.CoursePrefix) &&
-                        c.Number.Equals(GradeToEdit.CourseNum) &&
-                        c.Year.Equals(GradeToEdit.Year) &&
-                        c.Semester.Equals(GradeToEdit.Semester)))
-                    .First();
-
                 SelectedStudent = context.Students
                     .Where(s => s.Id.Equals(GradeToEdit.StudentId))
                     .First();
