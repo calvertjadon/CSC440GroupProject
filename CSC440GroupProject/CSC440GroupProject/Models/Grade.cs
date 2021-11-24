@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSC440GroupProject.Models
 {
+    [Table("calvert_grade")]
     public class Grade
     {
-        public string Letter { get; }
-        public string CoursePrefix { get; }
-        public string CourseNum { get; }
-        public int StudentId { get; }
-        public string Year { get; }
-        public string Semester { get; }
+        public string Letter { get; set; }
 
-        public Grade(string letter, string coursePrefix, string courseNum, int studentId, string year, string semester)
-        {
-            this.Letter = Letter;
-            this.CoursePrefix = CoursePrefix;
-            this.CourseNum = CourseNum;
-            this.StudentId = StudentId;
-            this.Year = Year;
-            this.Semester = Semester;
-        }
+        public string CoursePrefix { get; set; }
+        public string CourseNum { get; set; }
+        public int StudentId { get; set; }
+        public string Year { get; set; }
+        public string Semester { get; set; }
+
+        public Student student { get; set; }
+        public Course course { get; set; }
     }
 }

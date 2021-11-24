@@ -9,6 +9,12 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="148,88,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="278,234,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="176,306,0,0" VerticalAlignment="Top" Width="74"/>
+        <Button Content="Load Students" HorizontalAlignment="Left" Margin="428,303,0,0" VerticalAlignment="Top" Width="242" Command="{Binding ButtonClick}" Height="38" />
+        <DataGrid HorizontalAlignment="Left" Height="100" Margin="428,174,0,0" VerticalAlignment="Top" Width="242" ItemsSource="{Binding Students}"  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
