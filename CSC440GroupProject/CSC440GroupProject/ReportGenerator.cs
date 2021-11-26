@@ -11,13 +11,11 @@ namespace CSC440GroupProject.Reports
     {
         public Student SelectedStudent { get; private set; }
         public List<Grade> Grades { get; private set; }
-        public static string FILE_EXTENSION { get; private set; }
 
-        protected ReportGenerator(Student selectedStudent, List<Grade> grades, string fileExtension)
+        protected ReportGenerator(Student selectedStudent, List<Grade> grades)
         {
             SelectedStudent = selectedStudent;
             Grades = grades;
-            FILE_EXTENSION = fileExtension;
         }
 
         public abstract void GenerateReport();

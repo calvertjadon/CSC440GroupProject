@@ -32,7 +32,7 @@ namespace CSC440GroupProject.ViewModels
             ImportRecordsCommand = new BaseCommand(OpenImportRecords);
 
             // DEFAULT TO LOGIN SCREEN
-            ImportRecordsCommand.Execute(null);
+            SearchCommand.Execute(null);
         }
 
         private void OpenSearch(object _)

@@ -9,7 +9,7 @@ namespace CSC440GroupProject.Reports
 {
     class PdfReportGenerator : ReportGenerator
     {
-        public PdfReportGenerator(Student selectedStudent, List<Grade> grades) : base(selectedStudent, grades, "pdf")
+        public PdfReportGenerator(Student selectedStudent, List<Grade> grades) : base(selectedStudent, grades)
         {
         }
 

@@ -184,7 +184,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Converters\IsNullConverter.cs" />
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Reports\DocxReportGenerator.cs" />
+    <Compile Include="Reports\PdfReportGenerator.cs" />
+    <Compile Include="Reports\PlainTextReportGenerator.cs" />
+    <Compile Include="Reports\ReportGenerator.cs" />
     <Compile Include="ViewModels\EditGradeViewModel.cs" />
     <Compile Include="ViewModels\ImportRecordsViewModel.cs" />
     <Compile Include="Models\Course.cs" />

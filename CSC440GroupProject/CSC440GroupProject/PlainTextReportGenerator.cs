@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace CSC440GroupProject.Reports
 {
-    class PdfReportGenerator : ReportGenerator
+    class PlainTextReportGenerator : ReportGenerator
     {
-        public PdfReportGenerator(Student selectedStudent, List<Grade> grades) : base(selectedStudent, grades, "pdf")
+        public PlainTextReportGenerator(Student selectedStudent, List<Grade> grades) : base(selectedStudent, grades)
         {
         }
 
         public override void GenerateReport()
         {
-            Console.WriteLine("PDF: " + SelectedStudent);
+            Console.WriteLine("PLAIN TEXT: " + SelectedStudent);
         }
     }
 }
