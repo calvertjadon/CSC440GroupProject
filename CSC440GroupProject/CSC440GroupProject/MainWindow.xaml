@@ -19,6 +19,10 @@
         <DataTemplate DataType="{x:Type viewmodels:EditGradeViewModel}">
             <views:EditGradeView />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:AddGradeViewModel}">
+            <views:AddGradeView />
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel LastChildFill="True">

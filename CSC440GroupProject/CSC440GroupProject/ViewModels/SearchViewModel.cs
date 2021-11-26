@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -16,6 +17,7 @@ namespace CSC440GroupProject.ViewModels
     {
         public ICommand ButtonClickCommand { get; set; }
         public ICommand GenerateReportCommand { get; set; }
+        public ICommand AddGradeCommand { get; set; }
 
         NavigationViewModel NavigationViewModel { get; set; }
 
@@ -112,6 +114,7 @@ namespace CSC440GroupProject.ViewModels
         {
             this.ButtonClickCommand = new BaseCommand(LoadStudents);
             this.GenerateReportCommand = new BaseCommand(GenerateReport);
+            this.AddGradeCommand = new BaseCommand(AddGrade);
 
             this.NavigationViewModel = navigationViewModel;
 
@@ -119,6 +122,41 @@ namespace CSC440GroupProject.ViewModels
             this.Grades = new List<Grade>();
 
             LoadStudents(null);
+        }
+
+        private void AddGrade(object _)
+        {
+            List<Course> Courses;
+            using (var context = new DatabaseContext())
+            {
+                IEnumerable<Grade> Grades = context.Grades.Where(g => g.StudentId == SelectedStudent.Id);
+                Courses = context.Courses.ToList();
+
+                foreach (var grade in Grades)
+                {
+                    Course course = Courses.Where(c => (
+                        grade.CoursePrefix == c.Prefix &&
+                        grade.CourseNum == c.Number &&
+                        grade.Year == c.Year &&
+                        grade.Semester == c.Semester
+                    )).FirstOrDefault();
+
+                    if (course != null)
+                    {
+                        Courses.Remove(course);
+                    }
+                }
+            }
+
+            if (Courses.Count == 0)
+            {
+                MessageBox.Show("There are no available courses for which to add a grade.");
+            } else
+            {
+                this.NavigationViewModel.SelectedViewModel = new AddGradeViewModel(SelectedStudent, Courses, this.NavigationViewModel);
+            }
+
+            
         }
 
         private void LoadStudents(object _)
