@@ -29,26 +29,6 @@ namespace CSC440GroupProject.Reports
 
         }
 
-        private string getOutputPath()
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.DefaultExt = FILE_EXTENSION;
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            saveFileDialog.Filter = $"{FILE_EXTENSION.ToUpper()} | *.{FILE_EXTENSION}";
-            saveFileDialog.FileName = $"Transcript_{SelectedStudent.Name.Replace(" ", "")}{SelectedStudent.Id}";
-
-            var result = saveFileDialog.ShowDialog();
-            if (result == true)
-            {
-                return saveFileDialog.FileName;
-            } else
-            {
-                return null;
-            }
-        }
-
         private void writeOutput(string outputFilePath)
         {
             List<string> lines = new List<string>();
