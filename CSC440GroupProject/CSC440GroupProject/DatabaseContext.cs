@@ -1,5 +1,6 @@
 ﻿using CSC440GroupProject.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CSC440GroupProject
 {
@@ -14,8 +16,12 @@ namespace CSC440GroupProject
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            IConfigurationRoot config = new ConfigurationBuilder()
+                .AddJsonFile("database.config.json", optional: false)
+                .Build();
+
             optionsBuilder.UseMySql(
-                connectionString: @"server=localhost;database=csc440;uid=root;password=;",
+                connectionString: @config["connectionString"],
                 mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend));
         }
 
