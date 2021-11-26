@@ -71,7 +71,7 @@ namespace CSC440GroupProject.ViewModels
                 MessageBox.Show("Grade updated successfully");
             }
 
-            this.NavigationViewModel.SelectedViewModel = new SearchViewModel(this.NavigationViewModel);
+            this.NavigationViewModel.SelectedViewModel = new SearchViewModel(this.NavigationViewModel) { SelectedStudent=SelectedStudent };
         }
 
         private void DeleteGrade(object _)
@@ -88,7 +88,7 @@ namespace CSC440GroupProject.ViewModels
                     MessageBox.Show("Grade deleted succesfully");
                 }
 
-                this.NavigationViewModel.SelectedViewModel = new SearchViewModel(this.NavigationViewModel);
+                this.NavigationViewModel.SelectedViewModel = new SearchViewModel(this.NavigationViewModel) { SelectedStudent=SelectedStudent };
             }
             
         }

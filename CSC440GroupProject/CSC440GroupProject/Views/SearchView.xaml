@@ -9,7 +9,7 @@
     <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
         <Label Content="Student ID: " HorizontalAlignment="Left" Margin="47,104,0,0" VerticalAlignment="Top" Width="80"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="169,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding IdInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        
+
         <DataGrid
             HorizontalAlignment="Left"
             Height="100"
@@ -27,7 +27,7 @@
                 <DataGridTextColumn Header="GPA" Binding="{Binding GPA, StringFormat='0.00'}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Button
             Content="Load Students"
             HorizontalAlignment="Left"
@@ -87,6 +87,25 @@
             VerticalAlignment="Top"
             Width="150"
             Command="{Binding GenerateReportCommand}"
+        >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="True" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedStudent}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button
+            Content="Add Grade"
+            HorizontalAlignment="Left"
+            Margin="522,110,0,0"
+            VerticalAlignment="Top"
+            Width="119"
+            Command="{Binding AddGradeCommand}"
         >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
