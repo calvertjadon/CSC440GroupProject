@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,14 +23,15 @@ namespace CSC440GroupProject.Reports
 
             if (outputFilePath != null)
             {
-                writeOutput(outputFilePath);
+                WriteOutput(outputFilePath);
 
                 MessageBox.Show("File saved successfully");
-            }
 
+                Process.Start("NOTEPAD.EXE", outputFilePath);
+            }
         }
 
-        private void writeOutput(string outputFilePath)
+        private void WriteOutput(string outputFilePath)
         {
             List<string> lines = new List<string>();
 
