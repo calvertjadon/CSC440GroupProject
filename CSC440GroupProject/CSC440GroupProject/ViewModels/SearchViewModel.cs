@@ -99,7 +99,7 @@ namespace CSC440GroupProject.ViewModels
         private List<RadioClass> radio = new List<RadioClass>()
         {
             new RadioClass { Header = "Plain Text", CheckedProperty = true },
-            new RadioClass { Header = "PDF", CheckedProperty = false },
+            //new RadioClass { Header = "PDF", CheckedProperty = false },
             new RadioClass { Header = "Microsoft Word", CheckedProperty = false },
         };
 
