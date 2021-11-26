@@ -26,11 +26,36 @@
     </Window.Resources>
 
     <DockPanel LastChildFill="True">
-        <StackPanel x:Name="navigation" DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button Content="ImportRecords" Command="{Binding ImportRecordsCommand}" />
-            <Button Content="Search" Command="{Binding SearchCommand}" />
+        <StackPanel
+            x:Name="navigation"
+            DockPanel.Dock="Top"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            Background="#4C151E"
+        >
+            <Button
+                Content="Import Records"
+                Command="{Binding ImportRecordsCommand}"
+                Padding="10, 5"
+                Margin="10"
+                Background="White"
+                FontWeight="Bold"
+            >
+            </Button>
+            <Button
+                Content="Search"
+                Command="{Binding SearchCommand}"
+                Padding="10, 5"
+                Margin="10"
+                Background="White"
+                FontWeight="Bold"
+            />
         </StackPanel>
 
-        <ContentControl x:Name="Pages" DockPanel.Dock="Bottom" Content="{Binding SelectedViewModel}" />
+        <ContentControl
+            x:Name="Pages"
+            DockPanel.Dock="Bottom"
+            Content="{Binding SelectedViewModel}"
+        />
     </DockPanel>
 </Window>

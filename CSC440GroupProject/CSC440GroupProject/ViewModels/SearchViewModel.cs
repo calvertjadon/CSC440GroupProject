@@ -95,6 +95,8 @@ namespace CSC440GroupProject.ViewModels
             set
             {
                 idInput = new string(value.Where(c => char.IsDigit(c)).ToArray());
+
+                LoadStudents(null);
             }
         }
 
