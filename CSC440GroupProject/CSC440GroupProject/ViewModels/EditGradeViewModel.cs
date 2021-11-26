@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CSC440GroupProject.ViewModels
@@ -11,6 +12,7 @@ namespace CSC440GroupProject.ViewModels
     class EditGradeViewModel : ViewModelBase
     {
         public ICommand UpdateGradeCommand { get; set; }
+        public ICommand DeleteGradeCommand { get; set; }
 
         private NavigationViewModel NavigationViewModel { get; set; }
 
@@ -42,6 +44,7 @@ namespace CSC440GroupProject.ViewModels
         public EditGradeViewModel(Grade selectedGrade, NavigationViewModel navigationViewModel)
         {
             UpdateGradeCommand = new BaseCommand(UpdateGrade);
+            DeleteGradeCommand = new BaseCommand(DeleteGrade);
 
             this.NavigationViewModel = navigationViewModel;
 
@@ -58,15 +61,36 @@ namespace CSC440GroupProject.ViewModels
 
         private void UpdateGrade(object _)
         {
-            Console.WriteLine("updating gradfe");
+            Console.WriteLine("updating grade");
 
             using (var context = new DatabaseContext())
             {
                 context.Update(GradeToEdit);
                 context.SaveChanges();
+
+                MessageBox.Show("Grade updated successfully");
             }
 
             this.NavigationViewModel.SelectedViewModel = new SearchViewModel(this.NavigationViewModel);
+        }
+
+        private void DeleteGrade(object _)
+        {
+            Console.WriteLine("deleting grade");
+
+            if (MessageBox.Show("Are you sure you want to delete this grade?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                using (var context = new DatabaseContext())
+                {
+                    context.Remove(GradeToEdit);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Grade deleted succesfully");
+                }
+
+                this.NavigationViewModel.SelectedViewModel = new SearchViewModel(this.NavigationViewModel);
+            }
+            
         }
     }
 }

@@ -59,6 +59,15 @@
             Height="34"
             Command="{Binding UpdateGradeCommand}"
         />
+        <Button
+            Content="Delete Grade"
+            HorizontalAlignment="Left"
+            Margin="418,330,0,0"
+            VerticalAlignment="Top"
+            Width="120"
+            Height="34"
+            Command="{Binding DeleteGradeCommand}"
+        />
 
     </Grid>
 </UserControl>
