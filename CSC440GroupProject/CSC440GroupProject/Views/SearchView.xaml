@@ -6,117 +6,229 @@
              xmlns:local="clr-namespace:CSC440GroupProject.Views" xmlns:converters="clr-namespace:CSC440GroupProject.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-        <Label Content="Student ID: " HorizontalAlignment="Left" Margin="47,104,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="169,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding IdInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    <DockPanel Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
 
-        <DataGrid
-            HorizontalAlignment="Left"
-            Height="100"
-            Margin="47,144,0,0"
-            VerticalAlignment="Top"
-            Width="242"
-            ItemsSource="{Binding Students}"
-            SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
-            AutoGenerateColumns="False"
-            x:Name="studentDataGrid" IsReadOnly="True" CanUserResizeRows="False" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"
+        <!-- BODY -->
+        
+        <!-- LEFT -->
+        <DockPanel
+            DockPanel.Dock="Left"
+            MinWidth="300"
+            Margin="10"
         >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="Auto"/>
-                <DataGridTextColumn Header="GPA" Binding="{Binding GPA, StringFormat='0.00'}" Width="Auto"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            
+            <!-- FILTER -->
+            <DockPanel
+                DockPanel.Dock="Top"
+                Margin="0, 0, 0, 10"
+            >
+                <Label
+                    Content="Student ID: "
+                    DockPanel.Dock="Left"
+                />
+                <TextBox
+                    Text="{Binding IdInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    DockPanel.Dock="Right"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    AcceptsReturn="True"
+                    
+                />
+            </DockPanel>
 
-        <Button
-            Content="Load Students"
-            HorizontalAlignment="Left"
-            Margin="47,273,0,0"
-            VerticalAlignment="Top"
-            Width="242"
-            Command="{Binding ButtonClickCommand}"
-            Height="38"
-        />
-
-        <DataGrid
-            HorizontalAlignment="Left"
-            Height="100"
-            Margin="440,144,0,0"
-            VerticalAlignment="Top"
-            Width="286"
-            ItemsSource="{Binding Grades}"
-            SelectedItem="{Binding SelectedGrade}"
-            AutoGenerateColumns="False"
-            x:Name="gradesDataGrid" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"
-
-        >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Course" Binding="{Binding FullCourseIdentifier}" Width="Auto"/>
-                <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="Auto"/>
-                <DataGridTextColumn Header="Semester" Binding="{Binding Semester}" Width="Auto"/>
-                <DataGridTextColumn Header="Grade" Binding="{Binding Letter}" Width="Auto"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <ItemsControl
-            ItemsSource="{Binding Radio}"
-            HorizontalAlignment="Left"
-            Margin="440,311,0,0"
-            VerticalAlignment="Top"
-        >
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <RadioButton
-                        Content="{Binding Header}"
-                        IsChecked="{Binding CheckedProperty}"
-                        GroupName="ReportTypeGroup"
+            <!-- STUDENT TABLE -->
+            <DataGrid
+                ItemsSource="{Binding Students}"
+                SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
+                AutoGenerateColumns="False"
+                x:Name="studentDataGrid"
+                IsReadOnly="True"
+                CanUserResizeRows="False"
+                SelectionMode="Single"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserSortColumns="False"
+                DockPanel.Dock="Bottom"
+            >
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Header="ID"
+                        Binding="{Binding Id}"
+                        Width="Auto"
                     />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    <DataGridTextColumn
+                        Header="Name"
+                        Binding="{Binding Name}"
+                        Width="Auto"
+                    />
+                    <DataGridTextColumn
+                        Header="GPA"
+                        Binding="{Binding GPA, StringFormat='0.00'}"
+                        Width="Auto"
+                    />
+                </DataGrid.Columns>
 
-        <Button
-            Content="Generate Report"
-            HorizontalAlignment="Left"
-            Margin="603,311,0,0"
-            VerticalAlignment="Top"
-            Width="150"
-            Command="{Binding GenerateReportCommand}"
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </DockPanel>
+        
+        <!-- RIGHT -->
+        <DockPanel
+            DockPanel.Dock="Right"
+            MinWidth="300"
+            Margin="10"
         >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="IsEnabled" Value="True" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedStudent}" Value="{x:Null}">
-                            <Setter Property="IsEnabled" Value="False" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button
-            Content="Add Grade"
-            HorizontalAlignment="Left"
-            Margin="522,110,0,0"
-            VerticalAlignment="Top"
-            Width="119"
-            Command="{Binding AddGradeCommand}"
-        >
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="IsEnabled" Value="True" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedStudent}" Value="{x:Null}">
-                            <Setter Property="IsEnabled" Value="False" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-    </Grid>
+            <DockPanel
+                DockPanel.Dock="Top"
+                Margin="0, 0, 0, 10"
+            >
+                <!-- RADIO BUTTONS -->
+                <StackPanel
+                    Orientation="Horizontal"
+                    DockPanel.Dock="Left"
+                >
+                    <WrapPanel>
+                        <ItemsControl
+                            ItemsSource="{Binding Radio}"
+                        >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <RadioButton
+                                    Content="{Binding Header}"
+                                    IsChecked="{Binding CheckedProperty}"
+                                    GroupName="ReportTypeGroup"
+                                />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </WrapPanel>
+
+                    <Button
+                        Content="Generate Report"
+                        Command="{Binding GenerateReportCommand}"
+                        Padding="10, 5"
+                        Margin="10, 0, 0, 0"
+                    >
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter
+                                    Property="IsEnabled"
+                                    Value="True"
+                                />
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding SelectedStudent}"
+                                        Value="{x:Null}"
+                                    >
+                                        <Setter
+                                            Property="IsEnabled"
+                                            Value="False"
+                                        />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <Button
+                    Content="Add Grade"
+                    Command="{Binding AddGradeCommand}"
+                    DockPanel.Dock="Right"
+                    HorizontalAlignment="Right"
+                    Padding="10, 5"
+                >
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedStudent}" Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </DockPanel>
+            <!-- GRADE TABLE -->
+            <DataGrid
+                    ItemsSource="{Binding Grades}"
+                    SelectedItem="{Binding SelectedGrade}"
+                    AutoGenerateColumns="False"
+                    x:Name="gradesDataGrid"
+                    CanUserResizeRows="False"
+                    SelectionMode="Single"
+                    IsReadOnly="True"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="False"
+                    CanUserSortColumns="False"
+                    DockPanel.Dock="Bottom"
+                >
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                            Header="Course"
+                            Binding="{Binding FullCourseIdentifier}"
+                            Width="Auto"
+                        />
+                    <DataGridTextColumn
+                            Header="Year"
+                            Binding="{Binding Year}"
+                            Width="Auto"
+                        />
+                    <DataGridTextColumn
+                            Header="Semester"
+                            Binding="{Binding Semester}"
+                            Width="Auto"
+                        />
+                    <DataGridTextColumn
+                            Header="Grade"
+                            Binding="{Binding Letter}"
+                            Width="Auto"
+                        />
+                </DataGrid.Columns>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </DockPanel>
+
+        
+
+        
+
+        
+        
+    </DockPanel>
 </UserControl>
