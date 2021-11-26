@@ -1,4 +1,5 @@
 ﻿using CSC440GroupProject.Models;
+using CSC440GroupProject.Reports;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ namespace CSC440GroupProject.ViewModels
     class SearchViewModel : ViewModelBase
     {
         public ICommand ButtonClickCommand { get; set; }
+        public ICommand GenerateReportCommand { get; set; }
 
         NavigationViewModel NavigationViewModel { get; set; }
 
@@ -28,7 +30,6 @@ namespace CSC440GroupProject.ViewModels
                 OnPropertyChanged("Students");
             }
         }
-
 
         private Student selectedStudent;
         public Student SelectedStudent
@@ -95,9 +96,23 @@ namespace CSC440GroupProject.ViewModels
             }
         }
 
+        private List<RadioClass> radio = new List<RadioClass>()
+        {
+            new RadioClass { Header = "Plain Text", CheckedProperty = true },
+            //new RadioClass { Header = "PDF", CheckedProperty = false },
+            new RadioClass { Header = "Microsoft Word", CheckedProperty = false },
+        };
+
+        public List<RadioClass> Radio
+        {
+            get => radio;
+        }
+
         public SearchViewModel(NavigationViewModel navigationViewModel)
         {
             this.ButtonClickCommand = new BaseCommand(LoadStudents);
+            this.GenerateReportCommand = new BaseCommand(GenerateReport);
+
             this.NavigationViewModel = navigationViewModel;
 
             this.Students = new List<Student>();
@@ -116,6 +131,61 @@ namespace CSC440GroupProject.ViewModels
                     .Where(s => s.Id.Contains(IdInput))
                     .ToList();
             }
+        }
+
+        private void GenerateReport(object _)
+        {
+            RadioClass SelectedRadio = Radio
+                .Where(r => r.CheckedProperty == true).FirstOrDefault();
+
+            if (SelectedRadio != null && SelectedStudent != null)
+            {
+                ReportGenerator reportGenerator;
+
+                switch (SelectedRadio.Header)
+                {
+                    case "Plain Text":
+                        reportGenerator = new PlainTextReportGenerator(
+                            SelectedStudent,
+                            Grades
+                        );
+                        break;
+                    case "PDF":
+                        reportGenerator = new PdfReportGenerator(
+                            SelectedStudent,
+                            Grades
+                        );
+                        break;
+                    case "Microsoft Word":
+                        reportGenerator = new DocxReportGenerator(
+                            SelectedStudent,
+                            Grades
+                        );
+                        break;
+                    default:
+                        throw new Exception("Invalid Report Generator Type");
+                }
+
+                reportGenerator.GenerateReport();
+            }
+        }
+
+        public class RadioClass : ViewModelBase
+        {
+            public string Header { get; set; }
+
+            private bool checkedProperty;
+            public bool CheckedProperty
+            {
+                get => checkedProperty;
+
+                set
+                {
+                    checkedProperty = value;
+                    OnPropertyChanged("CheckedProperty");
+                }
+            }
+
         }
     }
 }

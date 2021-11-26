@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CSC440GroupProject.Views"
+             xmlns:local="clr-namespace:CSC440GroupProject.Views" xmlns:converters="clr-namespace:CSC440GroupProject.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
@@ -57,5 +57,47 @@
                 <DataGridTextColumn Header="Grade" Binding="{Binding Letter}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <ItemsControl
+            ItemsSource="{Binding Radio}"
+            HorizontalAlignment="Left"
+            Margin="440,311,0,0"
+            VerticalAlignment="Top"
+        >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton
+                        Content="{Binding Header}"
+                        IsChecked="{Binding CheckedProperty}"
+                        GroupName="ReportTypeGroup"
+                    />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button
+            Content="Generate Report"
+            HorizontalAlignment="Left"
+            Margin="603,311,0,0"
+            VerticalAlignment="Top"
+            Width="150"
+            Command="{Binding GenerateReportCommand}"
+        >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="True" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedStudent}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

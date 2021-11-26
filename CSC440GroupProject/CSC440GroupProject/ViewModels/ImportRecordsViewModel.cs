@@ -1,4 +1,3 @@
-﻿
 using CSC440GroupProject.Models;
 using ExcelDataReader;
 using System;
@@ -100,7 +99,7 @@ namespace CSC440GroupProject.ViewModels
             {
                 MessageBox.Show("Failed to import Excel files");
             }
-            
+
         }
 
         private void AddStudentIfNotExists(Student newStudent)
