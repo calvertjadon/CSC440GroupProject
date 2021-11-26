@@ -7,9 +7,9 @@ using System.Windows.Input;
 
 namespace CSC440GroupProject.ViewModels
 {
-    class NavigationViewModel : INotifyPropertyChanged
+    class NavigationViewModel : ViewModelBase
     {
-        public ICommand LoginCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public ICommand ImportRecordsCommand { get; set; }
 
         private object selectedViewModel;
@@ -28,31 +28,21 @@ namespace CSC440GroupProject.ViewModels
 
         public NavigationViewModel()
         {
-            LoginCommand = new BaseCommand(OpenLogin);
+            SearchCommand = new BaseCommand(OpenSearch);
             ImportRecordsCommand = new BaseCommand(OpenImportRecords);
 
             // DEFAULT TO LOGIN SCREEN
-            LoginCommand.Execute(null);
+            ImportRecordsCommand.Execute(null);
         }
 
-        private void OpenLogin(object _)
+        private void OpenSearch(object _)
         {
-            SelectedViewModel = new LoginViewModel();
+            SelectedViewModel = new SearchViewModel(this);
         }
 
         private void OpenImportRecords(object _)
         {
             SelectedViewModel = new ImportRecordsViewModel();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
         }
     }
 }

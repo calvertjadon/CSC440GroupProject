@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSC440GroupProject.Models
 {
+    [Table("calvert_course")]
     public class Course
     {
-        public string Prefix { get; }
-        public string Number { get; }
-        public string Year { get; }
-        public string Semester { get; }
-        public int Hours { get; }
+        public int Hours { get; set; }
 
-        public Course(string Prefix, string Number, string Year, string Semester, int Hours)
+        public string Prefix { get; set; }
+        public string Number { get; set; }
+        public string Year { get; set; }
+        public string Semester { get; set; }
+
+        public string FullCourseIdentifier => Prefix + Number;
+
+        public override string ToString()
         {
-            this.Prefix = Prefix;
-            this.Number = Number;
-            this.Year = Year;
-            this.Semester = Semester;
-            this.Hours = Hours;
+            return $"{FullCourseIdentifier} {Semester} {Year}";
         }
     }
 }

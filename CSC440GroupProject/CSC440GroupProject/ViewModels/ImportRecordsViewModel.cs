@@ -1,110 +1,161 @@
-﻿using CSC440GroupProject.Reports;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using CSC440GroupProject.Models;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Globalization;
-using System.ComponentModel;
+using ExcelDataReader;
+using System;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace CSC440GroupProject.ViewModels
 {
-    class ImportRecordsViewModel : INotifyPropertyChanged
+    class ImportRecordsViewModel : ViewModelBase
     {
-        public ICommand GenerateReportCommand { get; set; }
-
-        private List<RadioClass> radio = new List<RadioClass>()
-        {
-            new RadioClass { Header = "Plain Text", CheckedProperty = true },
-            new RadioClass { Header = "PDF", CheckedProperty = false }
-        };
-
-        public List<RadioClass> Radio
-        {
-            get => radio;
-        }
+        public ICommand OpenFileCommand { get; set; }
 
         public ImportRecordsViewModel()
         {
-            GenerateReportCommand = new BaseCommand(GeneratePlainTextReport);
+            OpenFileCommand = new BaseCommand(ImportRecords);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void GeneratePlainTextReport(object _)
+        private void ImportRecords(object _)
         {
-            ReportGenerator reportGenerator;
-
-            RadioClass selectedRadioButton = Radio.Where(radio => radio.CheckedProperty == true).First();
-            switch (selectedRadioButton.Header)
+            try
             {
-                case "Plain Text":
-                    reportGenerator = new PlainTextReportGenerator(
-                        new Student(1111, "Jadon Calvert", 3.00, 3, 9),
-                        new List<Grade>
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                DialogResult result = folderBrowserDialog.ShowDialog();
+
+                if (result.Equals(DialogResult.OK))
+                {
+                    Console.WriteLine(folderBrowserDialog.SelectedPath);
+
+                    DirectoryInfo d = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+
+                    foreach (var file in d.GetFiles("*.xlsx"))
+                    {
+                        var words = Path.GetFileNameWithoutExtension(file.Name).Split(' ');
+                        string coursePrefix = words[0];
+                        string courseNum = words[1];
+                        string year = words[2];
+                        string semester = words[3];
+
+                        Course newCourse = new Course()
                         {
-                            new Grade("B", "CSC", "191", 1111, "2021", "Spring")
-                        }
-                    );
-                    break;
+                            Prefix = coursePrefix,
+                            Number = courseNum,
+                            Year = year,
+                            Semester = semester,
+                            Hours = 3
+                        };
 
-                case "PDF":
-                    reportGenerator = new PdfReportGenerator(
-                        new Student(1111, "Jadon Calvert", 3.00, 3, 9),
-                        new List<Grade>
+                        AddCourseIfNotExists(newCourse);
+
+                        using (var stream = file.OpenRead())
                         {
-                            new Grade("B", "CSC", "191", 1111, "2021", "Spring")
+                            using (var reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                do
+                                {
+                                    // Skip headers
+                                    reader.Read();
+
+                                    while (reader.Read())
+                                    {
+                                        string studentName = reader.GetString(0);
+                                        string studentId = reader.GetDouble(1).ToString();
+                                        string gradeLetter = reader.GetString(2);
+
+                                        Console.WriteLine($"{studentName} {studentId} {gradeLetter}");
+
+                                        Student newStudent = new Student()
+                                        {
+                                            Name = studentName,
+                                            Id = studentId
+                                        };
+
+                                        AddStudentIfNotExists(newStudent);
+
+                                        Grade newGrade = new Grade()
+                                        {
+                                            StudentId = studentId,
+                                            CoursePrefix = coursePrefix,
+                                            CourseNum = courseNum,
+                                            Year = year,
+                                            Semester = semester,
+                                            Letter = gradeLetter
+                                        };
+
+                                        AddGradeIfNotExists(newGrade);
+                                    }
+                                } while (reader.NextResult());
+                            }
                         }
-                    );
-                    break;
-                default:
-                    throw new Exception("Invalid Report Generator Type");
+                    }
+
+                    MessageBox.Show("Excel files imported successfully");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Failed to import Excel files");
             }
 
-            
-            reportGenerator.GenerateReport();
         }
 
-        private void OnPropertyChanged(string propName)
+        private void AddStudentIfNotExists(Student newStudent)
         {
-            if (PropertyChanged != null)
+            using (var context = new DatabaseContext())
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
-        }
+                Student existingStudent = context.Students
+                    .Where(s => s.Id.Equals(newStudent.Id))
+                    .FirstOrDefault();
 
-    }
-
-    public class RadioClass : INotifyPropertyChanged
-    {
-        public string Header { get; set; }
-
-        private bool checkedProperty;
-        public bool CheckedProperty
-        {
-            get
-            {
-                return checkedProperty;
-            }
-            set
-            {
-                checkedProperty = value;
-                OnPropertyChanged("CheckedProperty");
+                if (existingStudent == null)
+                {
+                    context.Students.Add(newStudent);
+                    context.SaveChanges();
+                }
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propName)
+        private void AddCourseIfNotExists(Course newCourse)
         {
-            if (PropertyChanged != null)
+            using (var context = new DatabaseContext())
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                Course existingCourse = context.Courses
+                    .Where(c => (
+                        c.Prefix.Equals(newCourse.Prefix) &&
+                        c.Number.Equals(newCourse.Number) &&
+                        c.Year.Equals(newCourse.Year) &&
+                        c.Semester.Equals(newCourse.Semester)))
+                    .FirstOrDefault();
+
+                if (existingCourse == null)
+                {
+                    context.Courses.Add(newCourse);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        private void AddGradeIfNotExists(Grade newGrade)
+        {
+            using (var context = new DatabaseContext())
+            {
+                Grade existingGrade = context.Grades
+                    .Where(g => (
+                        g.StudentId.Equals(newGrade.StudentId) &&
+                        g.CoursePrefix.Equals(newGrade.CoursePrefix) &&
+                        g.CourseNum.Equals(newGrade.CourseNum) &&
+                        g.Year.Equals(newGrade.Year) &&
+                        g.Semester.Equals(newGrade.Semester)))
+                    .FirstOrDefault();
+
+                if (existingGrade == null)
+                {
+                    context.Grades.Add(newGrade);
+                    context.SaveChanges();
+                }
             }
         }
     }

@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSC440GroupProject.Models
 {
+    [Table("calvert_student")]
     public class Student
     {
-        public int Id { get; }
-        public string Name { get; }
-        public double GPA { get; }
-        public int CreditHours { get; }
-        public int GradePoints { get; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public double GPA { get; set; }
+        public int CreditHours { get; set; }
+        public int GradePoints { get; set; }
 
-        public Student(int Id, string Name, double GPA, int CreditHours, int GradePoints)
+        public override string ToString()
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.GPA = GPA;
-            this.CreditHours = CreditHours;
-            this.GradePoints = GradePoints;
+            return $"Student<{Id} {Name}>";
         }
     }
 }
