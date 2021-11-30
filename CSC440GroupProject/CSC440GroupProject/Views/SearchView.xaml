@@ -49,6 +49,8 @@
                 CanUserResizeColumns="False"
                 CanUserSortColumns="False"
                 DockPanel.Dock="Bottom"
+                Background="LightGray"
+                BorderBrush="#FF4C151E"
             >
                 <DataGrid.Columns>
                     <DataGridTextColumn
@@ -182,6 +184,8 @@
                     CanUserResizeColumns="False"
                     CanUserSortColumns="False"
                     DockPanel.Dock="Bottom"
+                    Background="LightGray"
+                    BorderBrush="#FF4C151E"
                 >
                 <DataGrid.Columns>
                     <DataGridTextColumn
